@@ -25,18 +25,18 @@ def sort_trash(imgpath):
 
 		# wait for camera to detect motion, then sleep for a bit to
 		# let the object settle down
-		print "waiting for motion..."
+		print ("waiting for motion...")
 		motiondetector.waitForMotionDetection(camera.getPiCamera())
 		time.sleep(0.5) # Lets object settle down, TODO maybe remove
 		
-		print "detected motion"
+		print ("detected motion")
 
 		ui.set_status("classifying")
 
 		# take a photo and classify it
 		camera.takePhoto(imgpath)
 		labels = classifier.get_image_labels(imgpath)
-		print labels
+		print (labels)
 		selectedLabel = brain.getRecyclingLabel(labels)
 		is_trash = selectedLabel == None
 
