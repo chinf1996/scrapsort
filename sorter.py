@@ -31,7 +31,7 @@ def sort_trash(imgpath):
 		
 		print ("detected motion")
 
-		ui.set_status("classifying")
+		# ui.set_status("classifying")
 
 		# take a photo and classify it
 		camera.takePhoto(imgpath)
@@ -45,11 +45,11 @@ def sort_trash(imgpath):
 
 		if is_trash:
 			print("It's trash.")
-			ui.set_status("trash")
+			# ui.set_status("trash")
 			# servo.move(TRASH_POS)
 		else:
 			print("It's recyclable.")
-			ui.set_status("recycling")
+			# ui.set_status("recycling")
 			# servo.move(RECYCLE_POS)
 
 
