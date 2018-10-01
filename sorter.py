@@ -1,11 +1,11 @@
-import servo
-import ui
+# import servo
+# import ui
 from camera import Camera
 from vision import Classifier
 import motiondetector
 import time 
 import brain
-from databasehelper import Database
+# from databasehelper import Database
 import os
 
 TRASH_POS = 10
@@ -14,14 +14,14 @@ NEUTRAL_POS = 100
 
 def sort_trash(imgpath):
 	camera = Camera()
-	database = Database()
+	# database = Database()
 	classifier = Classifier(os.path.abspath('classifier/trained_graph.pb'), os.path.abspath('classifier/output_labels.txt'))
 
 	statusThread = ui.start_status_shower_thread()
 
 	while True:
-		servo.move(NEUTRAL_POS)
-		ui.set_status("ready")
+		# servo.move(NEUTRAL_POS)
+		# ui.set_status("ready")
 
 		# wait for camera to detect motion, then sleep for a bit to
 		# let the object settle down
@@ -40,17 +40,17 @@ def sort_trash(imgpath):
 		selectedLabel = brain.getRecyclingLabel(labels)
 		is_trash = selectedLabel == None
 
-		database.write_result(imgpath, labels, is_trash, selectedLabel)
-		print "Wrote result to database."
+		# database.write_result(imgpath, labels, is_trash, selectedLabel)
+		# print "Wrote result to database."
 
 		if is_trash:
 			print("It's trash.")
 			ui.set_status("trash")
-			servo.move(TRASH_POS)
+			# servo.move(TRASH_POS)
 		else:
 			print("It's recyclable.")
 			ui.set_status("recycling")
-			servo.move(RECYCLE_POS)
+			# servo.move(RECYCLE_POS)
 
 
 def main():
