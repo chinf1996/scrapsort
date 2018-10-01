@@ -13,8 +13,7 @@ RECYCLE_POS = 160
 NEUTRAL_POS = 100
 
 def sort_trash(imgpath):
-	imgpath = "/home/pi/test3.jpg"
-	iCamera = Camera()
+	camera = Camera()
 	# database = Database()
 	classifier = Classifier(os.path.abspath('classifier/trained_graph.pb'), os.path.abspath('classifier/output_labels.txt'))
 
@@ -27,7 +26,7 @@ def sort_trash(imgpath):
 		# wait for camera to detect motion, then sleep for a bit to
 		# let the object settle down
 		print ("waiting for motion...")
-		motiondetector.waitForMotionDetection(iCamera.getPiCamera())
+		motiondetector.waitForMotionDetection(camera.getPiCamera())
 		time.sleep(0.5) # Lets object settle down, TODO maybe remove
 		
 		print ("detected motion")
@@ -35,7 +34,7 @@ def sort_trash(imgpath):
 		ui.set_status("classifying")
 
 		# take a photo and classify it
-		iCamera.takePhoto(imgpath)
+		camera.takePhoto(imgpath)
 		labels = classifier.get_image_labels(imgpath)
 		print (labels)
 		selectedLabel = brain.getRecyclingLabel(labels)
