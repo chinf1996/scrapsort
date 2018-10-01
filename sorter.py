@@ -13,11 +13,12 @@ RECYCLE_POS = 160
 NEUTRAL_POS = 100
 
 def sort_trash(imgpath):
+	imgpath = "/home/pi/test3.jpg"
 	iCamera = Camera()
 	# database = Database()
 	classifier = Classifier(os.path.abspath('classifier/trained_graph.pb'), os.path.abspath('classifier/output_labels.txt'))
 
-	statusThread = ui.start_status_shower_thread()
+	# statusThread = ui.start_status_shower_thread()
 
 	while True:
 		# servo.move(NEUTRAL_POS)
