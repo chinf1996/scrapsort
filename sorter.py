@@ -8,9 +8,9 @@ import brain
 # from databasehelper import Database
 import os
 
-TRASH_POS = 10
-RECYCLE_POS = 160
-NEUTRAL_POS = 100
+# TRASH_POS = 10
+# RECYCLE_POS = 160
+# NEUTRAL_POS = 100
 
 def sort_trash(imgpath):
 	camera = Camera()
