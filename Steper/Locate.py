@@ -11,7 +11,7 @@ class Locate:
     
     def Go(self, distance):
         """Go to the specified distance, Let the stepper motor take (distance/lenStep) steps"""
-        _steps = distance/_lenStep
-        Steper.NonlinearSpeed(_steps)
+        _steps = distance/int(_lenStep)
+        Steper.NonlinearSpeed(int(_steps))
         
     
