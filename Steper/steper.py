@@ -21,16 +21,16 @@ class Steper:
 
     def __init__(self):
         GPIO.setmode(GPIO.BCM) # BCM
-        GPIO.setup(en, GPIO.OUT)
-        GPIO.setup(a1_pin, GPIO.OUT)
-        GPIO.setup(a2_pin, GPIO.OUT)
-        GPIO.setup(b1_pin, GPIO.OUT)
-        GPIO.setup(b2_pin, GPIO.OUT)
-        GPIO.output(en, GPIO.HIGH)
+        GPIO.setup(self.en, GPIO.OUT)
+        GPIO.setup(self.a1_pin, GPIO.OUT)
+        GPIO.setup(self.a2_pin, GPIO.OUT)
+        GPIO.setup(self.b1_pin, GPIO.OUT)
+        GPIO.setup(self.b2_pin, GPIO.OUT)
+        GPIO.output(self.en, GPIO.HIGH)
 
-    def release():
+    def release(self):
         GPIO.cleanup()
-
+    @staticmethod
     def set_step(step):
 
         GPIO.output(a1_pin, step[0] == '1')
