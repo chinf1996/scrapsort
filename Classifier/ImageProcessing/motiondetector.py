@@ -8,7 +8,7 @@ from PIL import Image
 # Threshold (how much a pixel has to change by to be marked as "changed")
 # Sensitivity (how many pixels need to have changed before we mark motion as having occurred)
 threshold = 15
-sensitivity = 800
+sensitivity = 400
 
 # Capture a small test image for motion detection
 def captureTestImage(camera):
