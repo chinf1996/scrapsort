@@ -11,6 +11,7 @@ from Steper.vendor.StepMotor import StepMotor
 
 middle_step = 1050
 final_step = 2080
+delay = 6/1000
 
 def sort_trash(imgpath):
 	camera = Camera()
@@ -49,13 +50,13 @@ def sort_trash(imgpath):
 		else:
 			print("It's recyclable.")
 			if str(selectedLabel).find('plastic') != -1 or str(selectedLabel).find('glass') != -1:
-				stepmotor.forward(middle_step)
+				stepmotor.forward(delay,middle_step)
 				time.sleep(1)
-				stepmotor.backward(middle_step)
+				stepmotor.backward(delay,middle_step)
 			elif str(selectedLabel).find('paper') != -1 :
-				stepmotor.forward(final_step)
+				stepmotor.forward(delay,final_step)
 				time.sleep(1)
-				stepmotor.backward(final_step)
+				stepmotor.backward(delay,final_step)
 
 
 def main():
