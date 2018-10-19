@@ -20,6 +20,7 @@ def sort_trash(imgpath):
 
 	# statusThread = ui.start_status_shower_thread()
 	stepmotor = StepMotor()
+	stepmotor.initialize()
 	while True:
 		
 
@@ -53,10 +54,12 @@ def sort_trash(imgpath):
 				stepmotor.forward(delay,middle_step)
 				time.sleep(1)
 				stepmotor.backward(delay,middle_step)
+				stepmotor.initialize()
 			elif str(selectedLabel).find('paper') != -1 :
 				stepmotor.forward(delay,final_step)
 				time.sleep(1)
 				stepmotor.backward(delay,final_step)
+				stepmotor.initialize()
 
 
 def main():
