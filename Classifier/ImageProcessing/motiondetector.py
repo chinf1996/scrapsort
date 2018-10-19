@@ -35,6 +35,7 @@ def waitForMotionDetection(camera):
             for y in range(0, 75):
                 # Just check green channel - it's highest quality
                 pixdiff = abs(buffer1[x,y][1] - buffer2[x,y][1])
+                print(pixdiff)
                 if pixdiff > threshold:
                     changedPixels += 1
                     print(changedPixels)
