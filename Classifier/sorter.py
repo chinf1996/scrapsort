@@ -7,10 +7,10 @@ import time
 import brain
 # from databasehelper import Database
 import os
+from Steper.vendor.StepMotor import StepMotor
 
-# TRASH_POS = 10
-# RECYCLE_POS = 160
-# NEUTRAL_POS = 100
+middle_step = 1050
+final_step = 2080
 
 def sort_trash(imgpath):
 	camera = Camera()
@@ -18,10 +18,9 @@ def sort_trash(imgpath):
 	classifier = Classifier(os.path.abspath('Tf_classifier/trained_graph.pb'), os.path.abspath('Tf_classifier/output_labels.txt'))
 
 	# statusThread = ui.start_status_shower_thread()
-
+	stepmotor = StepMotor()
 	while True:
-		# servo.move(NEUTRAL_POS)
-		# ui.set_status("ready")
+		
 
 		# wait for camera to detect motion, then sleep for a bit to
 		# let the object settle down
@@ -31,7 +30,7 @@ def sort_trash(imgpath):
 		
 		print ("detected motion")
 
-		# ui.set_status("classifying")
+		
 
 		# take a photo and classify it
 		camera.takePhoto(imgpath)
@@ -40,8 +39,8 @@ def sort_trash(imgpath):
 		selectedLabel = brain.getRecyclingLabel(labels)
 		is_trash = selectedLabel == None
 
-		# database.write_result(imgpath, labels, is_trash, selectedLabel)
-		# print "Wrote result to database."
+		
+		
 
 		if is_trash:
 			print("It's trash.")
@@ -49,8 +48,14 @@ def sort_trash(imgpath):
 			# servo.move(TRASH_POS)
 		else:
 			print("It's recyclable.")
-			# ui.set_status("recycling")
-			# servo.move(RECYCLE_POS)
+			if str(selectedLabel).find('plastic') != -1 or str(selectedLabel).find('glass') != -1:
+				stepmotor.forward(middle_step)
+				time.sleep(1)
+				stepmotor.backward(middle_step)
+			elif str(selectedLabel).find('paper') != -1 :
+				stepmotor.forward(final_step)
+				time.sleep(1)
+				stepmotor.backward(final_step)
 
 
 def main():
