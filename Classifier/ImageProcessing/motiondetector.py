@@ -37,6 +37,7 @@ def waitForMotionDetection(camera):
                 pixdiff = abs(buffer1[x,y][1] - buffer2[x,y][1])
                 if pixdiff > threshold:
                     changedPixels += 1
+                    print(changedPixels)
                     
         # Break out of the loop if the pixels have changed
         if changedPixels > sensitivity:
